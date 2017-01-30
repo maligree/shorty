@@ -27,6 +27,9 @@ class Command(BaseCommand):
         response = requests.get(build_url(user_count))
 
         for random_user in response.json()['results']:
+            # If this was a critical piece, we'd use bulk_create(),
+            # but since create_user() does a bit behind the scenes
+            # we'll stick to a loop here. 
             user = User.objects.create_user(
                 random_user['login']['username'],
                 random_user['email'],
