@@ -2,6 +2,15 @@ from django.core.management import call_command
 from django.test import TestCase
 from django.test import Client
 
+from core.models import User
+
+class CreateFakeUsersTest(TestCase):
+    def test_command(self):
+        call_command('create_fake_users', 10)
+        user_count = User.objects.count()
+        self.assertEqual(user_count, 10)
+
+
 class GeneralTest(TestCase):
 
     @classmethod
