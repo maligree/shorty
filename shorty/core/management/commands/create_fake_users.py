@@ -1,17 +1,12 @@
 import requests
 from django.contrib.auth.models import User
 from django.core.management import BaseCommand
-from django.db import connection
 
 URL = 'https://randomuser.me/api/'
 
 
-# todo: progressbar via tqdm
-
 def build_url(n):
     return '{}?results={}'.format(URL, n)
-
-# todo: /Users/maligree/shorty/VENV/lib/python3.6/site-packages/django/db/models/fields/__init__.py:1430: RuntimeWarning: DateTimeField User.date_joined received a naive datetime (2005-11-05 04:07:05) while time zone support is active.
 
 
 class Command(BaseCommand):
@@ -28,7 +23,7 @@ class Command(BaseCommand):
             # If this was a critical piece, we'd use bulk_create(),
             # but since create_user() does a bit behind the scenes
             # we'll stick to a loop here.
-            user = User.objects.create_user(
+            User.objects.create_user(
                 random_user['login']['username'],
                 random_user['email'],
                 random_user['login']['password'],
