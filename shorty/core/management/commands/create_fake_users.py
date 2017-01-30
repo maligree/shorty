@@ -35,5 +35,3 @@ class Command(BaseCommand):
                 last_name=random_user['name']['last'],
                 date_joined=random_user['registered'])
 
-
-        print(connection.queries)
