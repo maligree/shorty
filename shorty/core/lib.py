@@ -16,5 +16,5 @@ def get_random_user_from_db():
 
 def build_shortener_token(url):
     min_len, max_len = settings.SHORT_URL_LENGTH_BOUNDS
-    pool = string.ascii_uppercase + string.digits
+    pool = string.ascii_uppercase + string.ascii_lowercase + string.digits
     return ''.join(choice(pool) for _ in range(randint(min_len, max_len)))
