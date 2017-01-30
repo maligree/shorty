@@ -12,5 +12,7 @@ class Link(models.Model):
                              related_name='links',
                              on_delete=models.CASCADE)
 
-    def __unicode__(self):
-        return u'<Link #{}>'.format(self.id)
+    def __str__(self):
+        return u'<Link #{} token={} url={:.40}>'.format(self.id,
+                                                        self.token,
+                                                        self.url)
