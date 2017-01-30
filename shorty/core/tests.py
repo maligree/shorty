@@ -11,6 +11,10 @@ class CreateFakeUsersTest(TestCase):
 
 
 class GeneralTest(TestCase):
+    """
+    A really minimal set of smoketests to make sure
+    things at least look OK on the surface.
+    """
 
     @classmethod
     def setUpClass(cls):
