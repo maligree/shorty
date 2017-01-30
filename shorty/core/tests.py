@@ -33,7 +33,7 @@ class GeneralTest(TestCase):
 
     @classmethod
     def tearDownClass(cls):
-        # Important! Don't remove this and leave the 
+        # Important! Don't remove this and leave the
         # setUpClass method alone; this causes errors about
         # this class not having a 'cls_atomics' attribute.
         pass
