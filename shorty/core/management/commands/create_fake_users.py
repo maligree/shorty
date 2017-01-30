@@ -1,8 +1,6 @@
 import requests
-
-from django.core.management import BaseCommand
 from django.contrib.auth.models import User
-
+from django.core.management import BaseCommand
 from django.db import connection
 
 URL = 'https://randomuser.me/api/'
@@ -37,4 +35,3 @@ class Command(BaseCommand):
                 first_name=random_user['name']['first'],
                 last_name=random_user['name']['last'],
                 date_joined=random_user['registered'])
-

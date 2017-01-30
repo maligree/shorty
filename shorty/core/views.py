@@ -1,17 +1,14 @@
-from django.contrib.auth.models import User
-from django.conf import settings
-from django.db.models import F
-from django.shortcuts import render, redirect, get_object_or_404
-
+from core.lib import build_shortener_token, get_random_user_from_db
 from core.models import Link
-from core.lib import build_shortener_token
-from core.lib import get_random_user_from_db
+from django.conf import settings
+from django.contrib.auth.models import User
+from django.db.models import F
+from django.shortcuts import get_object_or_404, redirect, render
 
 
 def index(request):
     # Let's display a warning when DB is not initialized.
     warn_not_initialized = User.objects.count() == 0
-
 
     return render(request, 'core/index.html', {
         'warn_not_initialized': warn_not_initialized

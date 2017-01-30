@@ -1,12 +1,8 @@
 import string
-
-from django.conf import settings
-
-from random import randint
-from random import choice
-
+from random import choice, randint
 
 from core.models import User
+from django.conf import settings
 
 
 def get_random_user_from_db():
