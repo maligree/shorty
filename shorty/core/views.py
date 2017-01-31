@@ -1,4 +1,4 @@
-from core.lib import build_shortener_token, get_random_user_from_db
+from core.lib import get_unique_shortener_token, get_random_user_from_db
 from core.models import Link
 from django.conf import settings
 from django.contrib.auth.models import User
@@ -25,9 +25,7 @@ def shorten(request):
     except Link.DoesNotExist:
         link = Link()
         link.url = url
-        # TODO: We WILL have a collision sooner or later.
-        # TODO: We'll need to re-generate a token if it's not unique.
-        link.token = build_shortener_token(url)
+        link.token = get_unique_shortener_token()
         link.user = get_random_user_from_db()
         link.save()
 
