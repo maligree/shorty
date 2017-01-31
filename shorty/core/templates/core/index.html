@@ -6,36 +6,45 @@ Shortening URLs since '74
 
 {% block body %}
 <div class="container">
-  <div class="row">
+    <div class="row">
 
-    <div class="col-md-4 col-md-offset-4" style="margin-top:100px">
-      {% if warn_not_initialized %}
-        <div class="alert alert-warning">
-          Run <strong>create_fake_users</strong> first!
+        <div class="col-md-4 col-md-offset-4" style="margin-top:100px">
+            {% if warn_not_initialized %}
+            <div class="alert alert-warning">
+                Run <strong>create_fake_users</strong> first!
+            </div>
+            {% endif %}
+
+            <h2>A URL shortener</h2>
+
+            <form method="POST" action="/shorten">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="url">Whatcha want to shorten?</label>
+                    <input type="text"
+                           id="url"
+                           class="form-control"
+                           placeholder="Enter URL to shorten..."
+                           name="{{ link_form.url.html_name }}"
+                           value="{{ link_form.url.value|default_if_none:'' }}" />
+                </div>
+                {% if link_form.url.errors %}
+                  {% for error in link_form.url.errors %}
+                      <div>
+                        <strong class="text-danger">{{ error|escape }}</strong>
+                      </div>
+                  {% endfor %}
+                {% endif %}
+
+                <div class="pull-right">
+                    <button class="btn btn-default" type="submit">
+                        Onwards!
+                    </button>
+                </div>
+
+            </form>
         </div>
-      {% endif %}
-
-      <h2>A URL shortener</h2>
-      <form method="POST" action="/shorten">
-        {% csrf_token %}
-
-        <div class="form-group">
-          <label for="url">Whatcha want to shorten?</label>
-          <input type="text"
-            id="url"
-            class="form-control"
-            placeholder="Enter URL to shorten..."
-            name="url" />
-        </div>
-
-        <div class="pull-right">
-          <button class="btn btn-default" type="submit">
-            Onwards!
-          </button>
-        </div>
-
-      </form>
     </div>
-  </div>
 </div>
 {% endblock %}

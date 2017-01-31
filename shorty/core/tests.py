@@ -26,14 +26,16 @@ class GeneralTest(TestCase):
     def test_index(self):
         client = Client()
         response = client.get('/')
-        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 302)
 
     def test_shorten(self):
+        TEST_URL = 'https://google.com/robots.txt'
         client = Client()
         response = client.post('/shorten', {
-            'url': 'https://google.com/robots.txt'
+            'url': TEST_URL
         })
         self.assertEqual(response.status_code, 200)
+        self.assertTrue(TEST_URL in response.content.decode('utf-8'))
 
     @classmethod
     def tearDownClass(cls):

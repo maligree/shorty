@@ -3,8 +3,7 @@ from django.db import models
 
 
 class Link(models.Model):
-
-    url = models.CharField(max_length=255, unique=True)
+    url = models.URLField(max_length=255, unique=True)
     token = models.CharField(max_length=32, unique=True)
     views = models.IntegerField(default=0)
 
