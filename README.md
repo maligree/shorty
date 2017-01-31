@@ -14,6 +14,13 @@ cd shorty
 ./manage.py runserver
 ```
 
+## Tests
+
+Some minor smoke tests included:
+```
+./manage.py test
+```
+
 ## Caveats
 
 * No true collision handling for the randomly generated tokens
