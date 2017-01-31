@@ -25,6 +25,8 @@ def shorten(request):
     except Link.DoesNotExist:
         link = Link()
         link.url = url
+        # TODO: We WILL have a collision sooner or later.
+        # TODO: We'll need to re-generate a token if it's not unique.
         link.token = build_shortener_token(url)
         link.user = get_random_user_from_db()
         link.save()
